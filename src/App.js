@@ -1,9 +1,19 @@
 import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import DogDetails from './DogDetails';
+import DogList from './DogList';
+
+const DOG_NAMES = ['perry', 'whiskey', 'duke'];
 
 function App() {
   return (
     <div className="App">
-      <h1>Good luck!</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/dogs" element={<DogList dogNames={DOG_NAMES}/>} />
+          <Route path="/dogs/:dogName" element={<DogDetails />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
