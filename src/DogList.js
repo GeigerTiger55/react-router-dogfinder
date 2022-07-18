@@ -11,9 +11,11 @@ import { Link } from "react-router-dom";
 function DogList({ dogNames }) {
 
   return (
-    dogNames.map(dogName =>
-      <Link to={`/dogs/${dogName}`}> {dogName} </Link>
-    )
+    <div>
+      dogNames.map(dogName =>
+        <Link key={dogName} to={`/dogs/${dogName}`}> <DogTile dogName={dogName} /> </Link>
+      )
+    </div>
   );
 }
 
