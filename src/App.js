@@ -13,13 +13,14 @@ import { useState } from "react";
  */
 //TODO: ajax call -install axios make call - state for dog data
 function App() {
-  const [dogs, setDogs] = useState(getDogs);
+  const [dogs, setDogs] = useState(getDogs());
   console.log('App', dogs, 'dogs***********');
   
   async function getDogs() {
     const dogs = await axios.get("localhost:5001/dogs");
-    return dogs;
+    dogs.then(setDogs(() => dogs));
   }
+
   return (
     <div className="App">
       <BrowserRouter>
