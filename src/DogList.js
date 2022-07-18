@@ -1,20 +1,22 @@
 import { Link } from "react-router-dom";
+import DogTile from "./DogTile";
 
 /**Shows a small amount of information for each dog that is clickable to view more
  * details on the dog
- * 
- * Props: 
- * - dogNames (arr)
- * 
- * App -->  DogList 
+ *
+ * Props:
+ * - dogs (arr of dog objects)
+ *
+ * App -->  DogList
  */
-function DogList({ dogNames }) {
-
+function DogList({ dogs }) {
   return (
     <div>
-      dogNames.map(dogName =>
-        <Link key={dogName} to={`/dogs/${dogName}`}> <DogTile dogName={dogName} /> </Link>
-      )
+      {dogs.map((dog) => (
+        <Link key={dog.name} to={`/dogs/${dog.name}`}>
+          <DogTile dog={dog} />
+        </Link>
+      ))}
     </div>
   );
 }
