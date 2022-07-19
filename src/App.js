@@ -7,22 +7,29 @@ import axios from "axios";
 import { useState } from "react";
 
 
-/**
+/** Gets array of dogs and displays navigation bar and list of dogs
  *
- *
+ *  App --> { Nav, DogList, DogDetails }
  */
-//TODO: ajax call -install axios make call - state for dog data
+
 function App() {
-  const [dogs, setDogs] = useState(getDogs());
+  const [dogs, setDogs] = useState([]);
   console.log('App', dogs, 'dogs***********');
   
   async function getDogs() {
-    const dogs = await axios.get("localhost:5001/dogs");
-    dogs.then(setDogs(() => dogs));
+    const response = await axios.get("http://localhost:5001/dogs");
+    setDogs(() => response.data);
   }
+
+  if(dogs.length === 0){
+    getDogs();
+    return( <div>Waiting for the dogs!</div>);
+  } 
 
   return (
     <div className="App">
+      <h1>FIND THE DOGS!</h1>
+      <div className="App-body">
       <BrowserRouter>
         <Nav dogs={dogs} />
         <Routes>
@@ -31,6 +38,7 @@ function App() {
           <Route path="*" element={<Navigate to="/dogs" />} />
         </Routes>
       </BrowserRouter>
+      </div>
     </div>
   );
 }

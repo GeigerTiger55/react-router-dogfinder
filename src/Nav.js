@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import './Nav.css';
 
 /**Shows dog names, linked to individual dog
  *
@@ -9,17 +10,17 @@ import { Link } from "react-router-dom";
  */
 function Nav({ dogs }) {
   return (
-    <div>
+    <div className="Nav">
       <ul className="Nav-ul">
         {dogs.map((dog) => (
           <li key={dog.name}>
-            <Link className="Nav-link" key={dog.name} to={`/dogs/${dog.name}`}>
+            <Link className="Nav-link" to={`/dogs/${dog.name}`}>
               {dog.name}
             </Link>
           </li>
         ))}
-        <li key="list-of-dogs">
-          <Link className="Nav-link" key="list-of-dogs" to={"/dogs"}>
+        <li>
+          <Link className="Nav-link" to={"/dogs"}>
             List of Dogs
           </Link>
         </li>

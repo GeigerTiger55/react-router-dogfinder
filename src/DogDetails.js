@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 
 /**DogDetails shows information about a specific dog
  *
@@ -9,12 +9,15 @@ import { useParams } from "react-router-dom";
  * -dogs (arr of dog objects)
  *
  * App --> DogDetails
+ * TODO: put dog facts into a list
  */
 function DogDetails({ dogs }) {
   const { dogName } = useParams();
-
-  const dog = dogs.filter((dog) => dog.name === dogName)[0];
-  console.log(dog, "dog ******************");
+  const dog = dogs.find(dog => dog.name === dogName);
+  console.log('**********DogDetails', dog);
+  if(!dog){
+    return <Navigate to="/dogs" />;
+  }
 
   return (
     <div>
